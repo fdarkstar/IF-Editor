@@ -151,7 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        let previewHtml = `<p>${scene.text}</p>`;
+        const formattedText = scene.text.replace(/\n/g, '<br>');
+        let previewHtml = `<p>${formattedText}</p>`;
         if (scene.choices && scene.choices.length > 0) {
             previewHtml += '<ul>';
             scene.choices.forEach(choice => {
