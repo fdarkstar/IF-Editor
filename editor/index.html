@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互动小说编辑器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>互动小说编辑器</h1>
+    </header>
+    <main>
+        <aside class="sidebar">
+            <h2>场景列表</h2>
+            <ul id="scene-list">
+                <!-- 场景将在这里动态加载 -->
+            </ul>
+            <button id="add-scene-btn">添加场景</button>
+        </aside>
+        <section class="editor-area">
+            <div id="editor-controls">
+                <button id="save-btn">保存小说</button>
+                <button id="load-btn">加载小说</button>
+                <button id="preview-btn">预览小说</button>
+            </div>
+            <div id="scene-editor">
+                <h2>场景编辑</h2>
+                <label for="scene-id">场景ID:</label>
+                <input type="text" id="scene-id">
+                <label for="scene-text">场景内容:</label>
+                <textarea id="scene-text" rows="10"></textarea>
+
+                <h3>选项</h3>
+                <div id="choices-container">
+                    <!-- 选项将在这里动态加载 -->
+                </div>
+                <button id="add-choice-btn">添加选项</button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #0275d8;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#story-display {
+    background-color: white;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+#scene-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+    white-space: pre-wrap; /* 保留换行符 */
+    text-align: left;
+}
+
+#choices-container button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 12px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#choices-container button:hover {
+    background-color: #4cae4c;
+}
+
+#ending-display {
+    margin-top: 2em;
+    padding: 1.5em;
+    background-color: #ffe0b2;
+    border: 1px solid #ff9800;
+    border-radius: 8px;
+}
+
+#ending-display h2 {
+    color: #ff9800;
+    margin-top: 0;
+}
+
+#ending-display button {
+    background-color: #0275d8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 1em;
+}

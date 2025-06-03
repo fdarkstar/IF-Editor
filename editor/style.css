@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 60px); /* 减去header的高度 */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #e0e0e0;
+    padding: 1em;
+    overflow-y: auto;
+    border-right: 1px solid #ccc;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    color: #4CAF50;
+}
+
+#scene-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+#scene-list li {
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#scene-list li.active {
+    background-color: #c8e6c9;
+    border-color: #4CAF50;
+}
+
+#scene-list li button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#add-scene-btn {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.editor-area {
+    flex-grow: 1;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+#editor-controls {
+    margin-bottom: 1em;
+    display: flex;
+    gap: 10px;
+}
+
+#editor-controls button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#editor-controls button#load-btn {
+    background-color: #f0ad4e;
+}
+
+#editor-controls button#preview-btn {
+    background-color: #0275d8;
+}
+
+#scene-editor {
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1em;
+}
+
+#scene-editor label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#scene-editor input[type="text"],
+#scene-editor textarea {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#choices-container .choice-item {
+    background-color: #e9e9e9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#choices-container .choice-item label {
+    font-weight: normal;
+}
+
+#choices-container .choice-item input[type="text"],
+#choices-container .choice-item select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#choices-container .choice-item button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+#add-choice-btn {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
