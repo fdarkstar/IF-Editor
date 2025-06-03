@@ -12,11 +12,29 @@
     </header>
     <main>
         <aside class="sidebar">
-            <h2>场景列表</h2>
-            <ul id="scene-list">
-                <!-- 场景将在这里动态加载 -->
-            </ul>
-            <button id="add-scene-btn">添加场景</button>
+        <h2>场景列表</h2>
+        <div class="sort-controls">
+            <label for="sort-by">排序:</label>
+            <select id="sort-by">
+                <option value="id-asc">按ID升序</option>
+                <option value="id-desc">按ID降序</option>
+                <option value="time-asc">按创建时间升序</option>
+                <option value="time-desc">按创建时间降序</option>
+            </select>
+        </div>
+        <div class="search-controls">
+            <label for="search-scene">搜索:</label>
+            <input type="text" id="search-scene" placeholder="输入场景ID或内容...">
+        </div>
+        <ul id="scene-list">
+            <!-- 场景将在这里动态加载 -->
+        </ul>
+        <div class="pagination-controls">
+            <button id="prev-page-btn">上一页</button>
+            <span id="page-info"></span>
+            <button id="next-page-btn">下一页</button>
+        </div>
+        <button id="add-scene-btn">添加场景</button>
         </aside>
         <section class="editor-area">
             <div id="editor-controls">
@@ -29,13 +47,17 @@
                 <label for="scene-id">场景ID:</label>
                 <input type="text" id="scene-id">
                 <label for="scene-text">场景内容:</label>
-                <textarea id="scene-text" rows="10"></textarea>
+                <textarea id="scene-text" rows="10" placeholder="新场景内容..."></textarea>
 
                 <h3>选项</h3>
                 <div id="choices-container">
                     <!-- 选项将在这里动态加载 -->
                 </div>
                 <button id="add-choice-btn">添加选项</button>
+            </div>
+            <div id="scene-preview">
+                <h2>场景预览</h2>
+                <div id="preview-content"></div>
             </div>
         </section>
     </main>
