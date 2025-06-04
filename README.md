@@ -1,6 +1,6 @@
-# acbook
-*互动小说编辑器位置处于在"editor\index.html"
-*有一个专门的阅读器位于https://github.com/fdarkstar/acbook-read
+# acbook即互动式小说（其实因该翻译为IF。。）
+### 互动小说编辑器位置处于在"editor\index.html"
+#### 有一个专门的阅读器位于https://github.com/fdarkstar/acbook-read
 # 互动式小说编辑器
 
 功能丰富的互动式小说编辑器，当然还在升级中。此编辑器旨在帮助用户轻松创建、编辑和管理自己的互动故事。它提供了一个直观的用户界面，让您可以专注于故事创作，而无需担心复杂的编程细节。
