@@ -1,0 +1,681 @@
+{
+  "title": "迷失的记忆",
+  "startSceneId": "intro",
+  "scenes": {
+    "intro": {
+      "id": "intro",
+      "text": "你醒来，发现自己躺在一片陌生的森林中。头很痛，对之前发生的事情没有任何记忆。你努力回想，却只感到一片空白。远处传来乌鸦的叫声，天色渐渐暗了下来。你决定：",
+      "choices": [
+        {
+          "text": "1. 沿着一条隐约的小路前进",
+          "targetSceneId": "path"
+        },
+        {
+          "text": "2. 在原地等待救援",
+          "targetSceneId": "wait"
+        }
+      ]
+    },
+    "path": {
+      "id": "path",
+      "text": "你沿着小路走了很久，周围的树木越来越茂密。突然，你看到前方有一座废弃的小屋。屋顶已经坍塌，窗户也破了一个大洞。你犹豫了一下：",
+      "choices": [
+        {
+          "text": "1. 走进去查看",
+          "targetSceneId": "cabin"
+        },
+        {
+          "text": "2. 绕开小屋继续前进",
+          "targetSceneId": "continue_path"
+        }
+      ]
+    },
+    "wait": {
+      "id": "wait",
+      "text": "你在原地等待了很久，夜幕完全降临。森林里传来各种奇怪的声音，你感到一阵寒意。你开始后悔自己的决定，但现在已经太晚了。你听见身后有细微的响动……",
+      "choices": []
+    },
+    "cabin": {
+      "id": "cabin",
+      "text": "你走进小屋，里面弥漫着一股腐朽的味道。地上散落着一些旧报纸和破碎的玻璃。你在角落里发现一个生锈的铁盒，打开一看，里面有一本日记和一张褪色的照片。日记里记载了一些零散的记忆片段，似乎与你有关。照片上是一个模糊的身影，你觉得有些熟悉。你决定：",
+      "choices": [
+        {
+          "text": "1. 仔细阅读日记",
+          "targetSceneId": "diary"
+        },
+        {
+          "text": "2. 带着日记和照片离开小屋",
+          "targetSceneId": "leave_cabin"
+        }
+      ]
+    },
+    "continue_path": {
+      "id": "continue_path",
+      "text": "你绕开了小屋，继续在小路上摸索。很快，你发现小路变得越来越模糊，最终消失在杂草丛中。你迷失了方向，周围一片漆黑。你感到绝望……",
+      "choices": []
+    },
+    "diary": {
+      "id": "diary",
+      "text": "你仔细阅读了日记，上面记录着一些关于一场实验和一次意外的信息。日记的主人似乎正在研究某种关于记忆的装置，但不幸发生了事故。日记的最后一页写着一个地址，似乎是实验室的所在地。你感到一丝希望：",
+      "choices": [
+        {
+          "text": "1. 前往日记中提到的地址",
+          "targetSceneId": "lab_address"
+        },
+        {
+          "text": "2. 尝试回忆更多细节",
+          "targetSceneId": "recall_memory"
+        }
+      ]
+    },
+    "leave_cabin": {
+      "id": "leave_cabin",
+      "text": "你带着日记和照片离开了小屋，继续沿着小路前进。你总觉得有人在背后跟着你，但每次回头都没有发现什么。你的心跳开始加速，你加快了脚步。你隐约看到远处有一丝光亮。你决定：",
+      "choices": [
+        {
+          "text": "1. 朝着光亮的方向跑去",
+          "targetSceneId": "light_source"
+        },
+        {
+          "text": "2. 找地方躲藏起来",
+          "targetSceneId": "hide"
+        }
+      ]
+    },
+    "lab_address": {
+      "id": "lab_address",
+      "text": "你根据日记中提供的地址，经过一番艰难的跋涉，终于来到了一个废弃的工厂。工厂的地下室里，你发现了一个简陋的实验室。实验室中央有一个奇怪的机器，看起来像是某种头盔。你觉得这可能是找回记忆的关键。你决定：",
+      "choices": [
+        {
+          "text": "1. 戴上头盔，尝试启动机器",
+          "targetSceneId": "machine_activate"
+        },
+        {
+          "text": "2. 仔细检查实验室，寻找更多线索",
+          "targetSceneId": "examine_lab"
+        }
+      ]
+    },
+    "recall_memory": {
+      "id": "recall_memory",
+      "text": "你闭上眼睛，努力回忆。头开始剧烈疼痛，一些模糊的画面在你脑海中闪现：实验室、闪烁的灯光、一个熟悉的声音……但这些画面都太零碎了，无法拼凑出完整的真相。你感到一阵眩晕，最终昏了过去……",
+      "choices": []
+    },
+    "light_source": {
+      "id": "light_source",
+      "text": "你朝着光亮的方向跑去，发现那是一个小村庄。村子里的人们看到你，都投来了好奇的目光。你向他们求助，希望能找到关于自己身份的线索。一位老妇人给了你一杯热茶，并告诉你，你已经在森林里失踪了好几天了。她似乎知道一些关于你过去的事情……",
+      "choices": [
+        {
+          "text": "1. 向老妇人询问更多信息",
+          "targetSceneId": "old_woman_talk"
+        },
+        {
+          "text": "2. 决定先在村子里休息一晚",
+          "targetSceneId": "village_rest"
+        }
+      ]
+    },
+    "hide": {
+      "id": "hide",
+      "text": "你躲在了一棵大树后面，屏住呼吸。你听到脚步声越来越近，然后停在了你附近。你紧张得不敢动弹。过了一会儿，脚步声渐渐远去。你松了一口气，但夜色更加深沉了。你不知道接下来该怎么办……",
+      "choices": []
+    },
+    "machine_activate": {
+      "id": "machine_activate",
+      "text": "你戴上头盔，按下启动按钮。机器发出嗡嗡的响声，一道强光闪过。你的头痛欲裂，无数记忆碎片涌入脑海。你看到了自己的过去，你是一名科学家，正在研究一种能够储存和恢复记忆的装置。事故发生在你进行一次关键实验时，装置发生了故障，导致你失忆并被传送到了森林中。现在，你所有的记忆都回来了。你感到欣喜若狂，但同时也意识到，这项技术可能被用于危险的目的。你决定：",
+      "choices": [
+        {
+          "text": "1. 销毁机器，防止其被滥用",
+          "targetSceneId": "destroy_machine"
+        },
+        {
+          "text": "2. 继续研究机器，完善技术",
+          "targetSceneId": "continue_research"
+        }
+      ]
+    },
+    "examine_lab": {
+      "id": "examine_lab",
+      "text": "你仔细检查了实验室，发现了一些研究笔记和实验数据。这些资料进一步证实了日记中记载的内容。你还找到了一把钥匙，似乎是通往某个隐藏房间的。你决定：",
+      "choices": [
+        {
+          "text": "1. 寻找钥匙对应的房间",
+          "targetSceneId": "hidden_room"
+        },
+        {
+          "text": "2. 再次考虑戴上头盔",
+          "targetSceneId": "lab_address"
+        }
+      ]
+    },
+    "old_woman_talk": {
+      "id": "old_woman_talk",
+      "text": "老妇人告诉你，你是一个外来的研究员，几周前突然出现在这片森林里。她还提到，最近森林里总有奇怪的动静，似乎有人在秘密进行着什么。你觉得这些信息可能与你的失忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 询问老妇人关于森林里的奇怪动静",
+          "targetSceneId": "forest_mystery"
+        },
+        {
+          "text": "2. 请求老妇人带你离开村庄，去更远的地方",
+          "targetSceneId": "leave_village"
+        }
+      ]
+    },
+    "village_rest": {
+      "id": "village_rest",
+      "text": "你在村子里休息了一晚，感到身体恢复了一些力气。第二天一早，你决定再次进入森林，寻找更多线索。你对自己的过去仍然一无所知，但你感到有一股力量驱使着你，去揭开真相。你选择一条新的路径……",
+      "choices": [
+        {
+          "text": "1. 探索森林深处",
+          "targetSceneId": "deep_forest"
+        },
+        {
+          "text": "2. 沿着河流前进",
+          "targetSceneId": "river_path"
+        }
+      ]
+    },
+    "destroy_machine": {
+      "id": "destroy_machine",
+      "text": "你决定销毁机器。你找到了一些工具，费尽力气拆除了机器的关键部件，并将其彻底摧毁。你感到一丝解脱，虽然失去了可能继续研究这项技术的机会，但你阻止了它可能带来的危害。你离开了实验室，决定重新开始新的生活，不再被过去的阴影所困扰。",
+      "choices": []
+    },
+    "continue_research": {
+      "id": "continue_research",
+      "text": "你决定继续研究机器。你意识到这项技术具有巨大的潜力，如果能够完善它，也许能造福人类。你留在实验室里，夜以继日地工作，修复机器并进行新的实验。你发现，这项技术不仅能恢复记忆，还能创造新的记忆，甚至修改记忆。你掌握了强大的力量，但你也明白，这力量伴随着巨大的责任。你将如何使用它？",
+      "choices": []
+    },
+    "hidden_room": {
+      "id": "hidden_room",
+      "text": "你用钥匙打开了一扇隐藏的门，里面是一个更小的房间。房间里有一个保险箱。你尝试输入一些可能的密码，但都没有成功。你注意到墙上挂着一张旧日历，上面有一个日期被圈了起来。你突然想到，这可能是密码。你输入了日期，保险箱应声而开。里面有一个加密的硬盘和一封信。信中提到了一个名为“回响”的组织，以及他们正在进行的非法记忆实验。你意识到，你可能不仅仅是失忆的受害者，更可能是一个被追捕的证人。你决定：",
+      "choices": [
+        {
+          "text": "1. 带着硬盘和信，寻求警方的帮助",
+          "targetSceneId": "police_help"
+        },
+        {
+          "text": "2. 尝试破解硬盘中的数据，获取更多信息",
+          "targetSceneId": "decode_disk"
+        }
+      ]
+    },
+    "forest_mystery": {
+      "id": "forest_mystery",
+      "text": "老妇人告诉你，最近森林里总有奇怪的光线闪烁，还听到一些机器运转的声音。她怀疑有人在森林里秘密进行着什么。你觉得这和你的失忆有密切关系。你决定深入森林，一探究竟。",
+      "choices": [
+        {
+          "text": "1. 朝着光线闪烁的方向前进",
+          "targetSceneId": "light_source_again"
+        },
+        {
+          "text": "2. 寻找机器运转声音的来源",
+          "targetSceneId": "machine_sound"
+        }
+      ]
+    },
+    "leave_village": {
+      "id": "leave_village",
+      "text": "你请求老妇人带你离开村庄，去更远的地方。她同意了，并安排了一辆马车送你。在路上，你看着窗外，心中充满了对未来的迷茫。你不知道自己是谁，也不知道自己要去往何方，但你相信，总有一天你会找回所有的记忆，揭开所有的谜团。",
+      "choices": []
+    },
+    "deep_forest": {
+      "id": "deep_forest",
+      "text": "你深入森林，周围的树木高大而茂密，阳光几乎无法穿透。你感到一丝不安。突然，你看到地面上有一些新鲜的脚印，看起来不像是动物的。你小心翼翼地跟着脚印前进，最终来到了一片被清理过的空地。空地中央有一个隐藏的入口，似乎通向地下。你决定：",
+      "choices": [
+        {
+          "text": "1. 进入地下入口",
+          "targetSceneId": "underground_entrance"
+        },
+        {
+          "text": "2. 在入口附近观察，看看有没有人出现",
+          "targetSceneId": "observe_entrance"
+        }
+      ]
+    },
+    "river_path": {
+      "id": "river_path",
+      "text": "你沿着河流前进，河水清澈，鸟儿在空中鸣唱。你感到身心放松。突然，你看到河边有一艘小船，船上似乎有一些物品。你走上前去，发现船上有一个防水的背包，里面装着一些野外生存用品和一本旅行日志。日志的主人似乎也在寻找某些东西，但中途失踪了。你决定：",
+      "choices": [
+        {
+          "text": "1. 乘坐小船，顺流而下",
+          "targetSceneId": "boat_downstream"
+        },
+        {
+          "text": "2. 带走背包，继续沿着河边前进",
+          "targetSceneId": "take_backpack"
+        }
+      ]
+    },
+    "police_help": {
+      "id": "police_help",
+      "text": "你带着硬盘和信，来到了最近的警局。你向警方说明了你的遭遇，并提供了所有的证据。警方对此非常重视，立即展开了调查。经过一番周折，警方成功逮捕了“回响”组织的成员，并解救了被他们非法囚禁的受害者。你的记忆也得到了恢复，你成为了揭露这个黑暗组织的英雄。你感到无比的骄傲和满足。",
+      "choices": []
+    },
+    "decode_disk": {
+      "id": "decode_disk",
+      "text": "你回到小屋，尝试破解硬盘中的数据。经过几天几夜的努力，你终于成功了。硬盘中记录了“回响”组织的详细计划，他们正试图通过记忆操控来控制社会。你还发现，你是这个组织的叛逃者，因为你发现了他们的邪恶计划，所以他们才试图抹去你的记忆。现在，你掌握了足以摧毁这个组织的证据。你决定：",
+      "choices": [
+        {
+          "text": "1. 将证据公之于众，揭露“回响”组织的罪行",
+          "targetSceneId": "expose_organization"
+        },
+        {
+          "text": "2. 独自行动，潜入“回响”组织的总部，彻底摧毁他们",
+          "targetSceneId": "solo_infiltration"
+        }
+      ]
+    },
+    "light_source_again": {
+      "id": "light_source_again",
+      "text": "你朝着光线闪烁的方向前进，发现那是一个隐藏在树林深处的营地。营地里有一些陌生人，他们穿着统一的服装，正在操作一些奇怪的设备。你感到一丝不安。你悄悄地靠近，试图听清他们的谈话。你听到他们提到了“记忆重塑”和“目标清除”之类的词语。你意识到，这可能就是导致你失忆的幕后黑手。你决定：",
+      "choices": [
+        {
+          "text": "1. 悄悄潜入营地，寻找更多证据",
+          "targetSceneId": "infiltrate_camp"
+        },
+        {
+          "text": "2. 立即撤退，寻求帮助",
+          "targetSceneId": "retreat_seek_help"
+        }
+      ]
+    },
+    "machine_sound": {
+      "id": "machine_sound",
+      "text": "你循着机器运转的声音前进，最终来到了一片被铁丝网围起来的区域。铁丝网内有一个废弃的仓库，机器的轰鸣声就是从里面传出来的。你发现铁丝网上有一个破洞，似乎可以钻进去。你决定：",
+      "choices": [
+        {
+          "text": "1. 钻过破洞，进入仓库",
+          "targetSceneId": "enter_warehouse"
+        },
+        {
+          "text": "2. 寻找其他进入仓库的途径",
+          "targetSceneId": "find_another_way"
+        }
+      ]
+    },
+    "underground_entrance": {
+      "id": "underground_entrance",
+      "text": "你进入地下入口，里面漆黑一片，你打开手机的手电筒。你发现这是一条长长的隧道，尽头传来微弱的光亮和人声。你感到一丝紧张，但好奇心驱使你继续前进。你决定：",
+      "choices": [
+        {
+          "text": "1. 小心翼翼地前进，靠近声音的来源",
+          "targetSceneId": "approach_sound"
+        },
+        {
+          "text": "2. 保持距离，先观察情况",
+          "targetSceneId": "observe_situation"
+        }
+      ]
+    },
+    "observe_entrance": {
+      "id": "observe_entrance",
+      "text": "你在入口附近观察了很久，但没有人出现。天色越来越暗，你感到一阵寒意。你意识到，继续等待下去可能会有危险。你决定：",
+      "choices": [
+        {
+          "text": "1. 还是进入地下入口",
+          "targetSceneId": "underground_entrance"
+        },
+        {
+          "text": "2. 暂时离开，明天再来",
+          "targetSceneId": "leave_come_tomorrow"
+        }
+      ]
+    },
+    "boat_downstream": {
+      "id": "boat_downstream",
+      "text": "你乘坐小船，顺流而下。河流蜿蜒曲折，两岸的景色不断变化。你在途中经过了一个废弃的码头，码头上停着一艘更大的船，看起来像是用来运输货物的。你觉得这艘船可能与你的失忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 登上大船，探索一番",
+          "targetSceneId": "explore_ship"
+        },
+        {
+          "text": "2. 继续顺流而下，寻找其他线索",
+          "targetSceneId": "continue_downstream"
+        }
+      ]
+    },
+    "take_backpack": {
+      "id": "take_backpack",
+      "text": "你带走了背包，继续沿着河边前进。背包里的野外生存用品对你帮助很大，让你能够更好地应对野外的挑战。你还仔细阅读了旅行日志，发现日志的主人似乎也在寻找一个名为“遗忘之所”的地方。你觉得这个地方可能与你的失忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 寻找“遗忘之所”",
+          "targetSceneId": "find_forgotten_place"
+        },
+        {
+          "text": "2. 尝试联系日志中提到的人",
+          "targetSceneId": "contact_person"
+        }
+      ]
+    },
+    "expose_organization": {
+      "id": "expose_organization",
+      "text": "你将所有的证据公之于众，各大媒体争相报道。“回响”组织的罪行被彻底曝光，引发了轩然大波。警方和国际刑警组织联合展开行动，将该组织彻底摧毁。你成为了揭露真相的英雄，你的事迹被广为传颂。你不仅找回了记忆，也拯救了无数可能被操控的受害者。你感到无比自豪，并决定投身于反记忆操控的研究，确保类似事件不再发生。",
+      "choices": []
+    },
+    "solo_infiltration": {
+      "id": "solo_infiltration",
+      "text": "你独自行动，潜入“回响”组织的总部。你运用自己过去作为科学家的知识和敏锐的观察力，成功避开了守卫，深入组织内部。你找到了他们的核心服务器，并成功上传了病毒，彻底摧毁了他们的记忆操控系统。在撤离过程中，你遭遇了组织的追捕，但最终你成功逃脱。虽然你可能永远无法回到正常的生活，但你拯救了无数人的记忆和自由。你成为了一个隐秘的守护者。",
+      "choices": []
+    },
+    "infiltrate_camp": {
+      "id": "infiltrate_camp",
+      "text": "你悄悄潜入营地，在其中一个帐篷里，你发现了一些文件，上面记录着“回响”组织正在进行的记忆清除实验。你还看到了一张照片，上面的人正是你自己。你突然明白了，你就是他们的实验对象，你的记忆被他们清除了。你感到愤怒和恐惧。你决定：",
+      "choices": [
+        {
+          "text": "1. 立即收集证据并逃离营地",
+          "targetSceneId": "collect_escape"
+        },
+        {
+          "text": "2. 尝试反击，破坏他们的设备",
+          "targetSceneId": "counterattack"
+        }
+      ]
+    },
+    "retreat_seek_help": {
+      "id": "retreat_seek_help",
+      "text": "你立即撤退，跑回了村庄。你向老妇人说明了情况，她对此感到非常震惊。她建议你联系村子里的一位退休警察，他或许能帮助你。你决定听从她的建议，向退休警察寻求帮助。你意识到，你不再是孤身一人了。",
+      "choices": []
+    },
+    "enter_warehouse": {
+      "id": "enter_warehouse",
+      "text": "你钻过破洞，进入了仓库。仓库里灯光昏暗，一台巨大的机器正在轰鸣作响。几个穿着白大褂的人正在机器旁忙碌着。你听到他们谈论着“记忆转移”和“目标意识”。你意识到，这个仓库就是“回响”组织的秘密基地。你感到危险逼近。你决定：",
+      "choices": [
+        {
+          "text": "1. 躲藏起来，观察他们的行动",
+          "targetSceneId": "hide_observe"
+        },
+        {
+          "text": "2. 寻找出口，尽快逃离",
+          "targetSceneId": "find_exit_warehouse"
+        }
+      ]
+    },
+    "find_another_way": {
+      "id": "find_another_way",
+      "text": "你没有立即进入仓库，而是沿着铁丝网寻找其他入口。你发现铁丝网的一角有一个生锈的门，似乎没有上锁。你轻轻推开门，里面是一个狭窄的通道，通向仓库的另一边。你决定：",
+      "choices": [
+        {
+          "text": "1. 进入通道，绕到仓库内部",
+          "targetSceneId": "enter_passage"
+        },
+        {
+          "text": "2. 还是从破洞进入，更直接一些",
+          "targetSceneId": "enter_warehouse"
+        }
+      ]
+    },
+    "approach_sound": {
+      "id": "approach_sound",
+      "text": "你小心翼翼地前进，声音越来越清晰。你听到人们在争吵，似乎是在为一个实验的结果而争论。你看到隧道尽头有一个房间，房间里有几个人，他们正在一个大型控制台前操作着。你看到控制台上显示着一些复杂的图表和数据，其中一些数据似乎与人类大脑活动有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 冲进去，质问他们",
+          "targetSceneId": "confront_them"
+        },
+        {
+          "text": "2. 寻找机会，窃取他们的实验数据",
+          "targetSceneId": "steal_data"
+        }
+      ]
+    },
+    "observe_situation": {
+      "id": "observe_situation",
+      "text": "你保持距离，观察房间里的情况。你看到那些人正在进行一项记忆清除的实验，他们正在对一个被束缚的人进行操作。你感到愤怒和恐惧。你意识到，你必须阻止他们。你决定：",
+      "choices": [
+        {
+          "text": "1. 悄悄寻找他们的弱点，然后进行反击",
+          "targetSceneId": "find_weakness"
+        },
+        {
+          "text": "2. 立即报警，寻求支援",
+          "targetSceneId": "call_police_underground"
+        }
+      ]
+    },
+    "leave_come_tomorrow": {
+      "id": "leave_come_tomorrow",
+      "text": "你决定暂时离开，明天再来。你在森林里找到了一个相对安全的地方，搭起了一个简易的庇护所。夜里，你辗转反侧，思考着自己的过去和未来的方向。你不知道明天会发生什么，但你决心找到真相。黎明时分，你再次回到了那个空地。",
+      "choices": [
+        {
+          "text": "1. 进入地下入口",
+          "targetSceneId": "underground_entrance"
+        }
+      ]
+    },
+    "explore_ship": {
+      "id": "explore_ship",
+      "text": "你登上大船，发现船上装满了各种高科技设备。你在船长室里找到了一份航海日志，日志上记录着船只的航线，以及一些关于“记忆碎片”的神秘信息。你还发现了一张地图，上面标记着一个偏远的岛屿。你觉得这个岛屿可能隐藏着你的记忆之谜。你决定：",
+      "choices": [
+        {
+          "text": "1. 驾驶船只，前往那个岛屿",
+          "targetSceneId": "sail_to_island"
+        },
+        {
+          "text": "2. 继续探索船只，寻找更多线索",
+          "targetSceneId": "further_explore_ship"
+        }
+      ]
+    },
+    "continue_downstream": {
+      "id": "continue_downstream",
+      "text": "你继续顺流而下，河流最终汇入大海。你在海边发现了一个废弃的灯塔，灯塔顶端的光线已经熄灭。你觉得这个灯塔可能与你的记忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 进入灯塔，探索一番",
+          "targetSceneId": "explore_lighthouse"
+        },
+        {
+          "text": "2. 沿着海岸线前进，寻找其他线索",
+          "targetSceneId": "walk_coastline"
+        }
+      ]
+    },
+    "find_forgotten_place": {
+      "id": "find_forgotten_place",
+      "text": "你根据日志中的线索，踏上了寻找“遗忘之所”的旅程。经过漫长的跋涉，你来到了一处被迷雾笼罩的山谷。山谷深处，你发现了一座古老的废墟，废墟中央有一个巨大的石碑，上面刻着一些古老的符号。你感到这里就是“遗忘之所”。你决定：",
+      "choices": [
+        {
+          "text": "1. 解读石碑上的符号",
+          "targetSceneId": "interpret_symbols"
+        },
+        {
+          "text": "2. 探索废墟，寻找其他线索",
+          "targetSceneId": "explore_ruins"
+        }
+      ]
+    },
+    "contact_person": {
+      "id": "contact_person",
+      "text": "你尝试联系日志中提到的人，通过各种途径寻找线索。最终，你成功联系到了一位名叫艾米丽的女士。艾米丽告诉你，她和日志的主人都是一个名为“记忆守护者”的组织的成员。他们一直在追查“回响”组织，并试图阻止他们对记忆的操控。艾米丽邀请你加入他们，共同对抗“回响”组织。你决定：",
+      "choices": [
+        {
+          "text": "1. 加入“记忆守护者”组织",
+          "targetSceneId": "join_memory_guardians"
+        },
+        {
+          "text": "2. 暂时不加入，独自调查",
+          "targetSceneId": "solo_investigation"
+        }
+      ]
+    },
+    "collect_escape": {
+      "id": "collect_escape",
+      "text": "你迅速收集了一些关键文件和照片作为证据，然后悄悄地离开了营地。你意识到，你不能坐以待毙。你必须将这些证据公之于众，揭露“回响”组织的罪行。你决定前往最近的城市，寻求帮助。",
+      "choices": []
+    },
+    "counterattack": {
+      "id": "counterattack",
+      "text": "你决定反击，破坏他们的设备。你利用营地里的杂物制造了一场混乱，然后趁机破坏了他们的记忆清除设备。营地里的人们一片混乱，你趁乱逃离。虽然你成功阻止了他们的一次实验，但也暴露了自己。你意识到，你将面临“回响”组织的追捕。你决定：",
+      "choices": []
+    },
+    "hide_observe": {
+      "id": "hide_observe",
+      "text": "你躲藏起来，仔细观察他们的行动。你发现他们正在进行一项非常危险的实验，他们试图将一个人的记忆转移到另一个人身上。你感到一阵恶心。你还注意到，他们似乎对你有所警惕，不时地向你躲藏的方向张望。你意识到，你可能已经暴露了。你决定：",
+      "choices": [
+        {
+          "text": "1. 立即逃离仓库",
+          "targetSceneId": "escape_warehouse"
+        },
+        {
+          "text": "2. 冒险发起攻击，阻止他们的实验",
+          "targetSceneId": "attack_warehouse"
+        }
+      ]
+    },
+    "find_exit_warehouse": {
+      "id": "find_exit_warehouse",
+      "text": "你寻找出口，发现仓库的另一边有一个紧急出口。你小心翼翼地靠近，成功打开了门。你逃离了仓库，回到了森林中。你感到一阵后怕，但你也更加坚定了找回记忆的决心。你意识到，你卷入了一场巨大的阴谋。你决定：",
+      "choices": []
+    },
+    "enter_passage": {
+      "id": "enter_passage",
+      "text": "你进入通道，通道狭窄而黑暗。你小心翼翼地前进，最终来到了仓库的另一边。你发现这里有一个控制室，里面只有一个人在操作。你决定：",
+      "choices": [
+        {
+          "text": "1. 悄悄潜入控制室，制服操作员",
+          "targetSceneId": "subdue_operator"
+        },
+        {
+          "text": "2. 寻找其他线索，避免直接冲突",
+          "targetSceneId": "avoid_conflict"
+        }
+      ]
+    },
+    "confront_them": {
+      "id": "confront_them",
+      "text": "你冲进房间，质问他们。他们被你的突然出现吓了一跳，但很快就恢复了镇定。他们告诉你，他们是“回响”组织的研究员，你是一个被清除记忆的叛逃者。他们试图将你抓捕，并彻底清除你的记忆。你陷入了危险。你决定：",
+      "choices": [
+        {
+          "text": "1. 奋力反抗，尝试逃脱",
+          "targetSceneId": "fight_escape"
+        },
+        {
+          "text": "2. 假装顺从，寻找反击机会",
+          "targetSceneId": "feign_compliance"
+        }
+      ]
+    },
+    "steal_data": {
+      "id": "steal_data",
+      "text": "你寻找机会，窃取他们的实验数据。你趁他们争吵的时候，悄悄地靠近控制台，插入了你的U盘，迅速拷贝了所有的数据。数据拷贝完成后，你悄悄地离开了房间。你感到一阵紧张，但你也知道，你掌握了重要的证据。你决定：",
+      "choices": []
+    },
+    "find_weakness": {
+      "id": "find_weakness",
+      "text": "你悄悄寻找他们的弱点。你发现他们的记忆清除设备需要持续的电源供应，而且设备的散热系统似乎不太稳定。你决定利用这一点进行反击。你找到了电源线路，并制造了一场短路。设备发出了刺耳的警报声，房间里的灯光熄灭了。一片混乱中，你趁机逃离了现场。你虽然没有完全摧毁他们，但你也成功阻止了他们的实验。你决定：",
+      "choices": []
+    },
+    "call_police_underground": {
+      "id": "call_police_underground",
+      "text": "你立即报警，并告诉他们你发现了一个秘密实验室。警方很快赶到，你带领他们进入了地下室。警方成功逮捕了“回响”组织的研究员，并解救了被囚禁的受害者。你的记忆也得到了恢复，你成为了揭露这个黑暗组织的英雄。你感到无比的骄傲和满足。",
+      "choices": []
+    },
+    "sail_to_island": {
+      "id": "sail_to_island",
+      "text": "你驾驶船只，前往地图上标记的岛屿。经过几天几夜的航行，你终于抵达了目的地。岛屿上有一座古老的城堡，看起来已经被遗弃了很久。你觉得这里就是你的记忆之谜的终点。你决定：",
+      "choices": [
+        {
+          "text": "1. 进入城堡，探索一番",
+          "targetSceneId": "explore_castle"
+        },
+        {
+          "text": "2. 在岛屿上寻找其他线索",
+          "targetSceneId": "search_island"
+        }
+      ]
+    },
+    "further_explore_ship": {
+      "id": "further_explore_ship",
+      "text": "你继续探索船只，在船舱深处，你发现了一个隐藏的隔间。隔间里有一个保险箱，里面装满了现金和伪造的身份证明。你还发现了一封信，信中提到了一个名为“遗忘之海”的地方，以及一个关于“记忆芯片”的计划。你意识到，你可能卷入了一场国际性的记忆操控阴谋。你决定：",
+      "choices": [
+        {
+          "text": "1. 带着所有物品，逃离船只",
+          "targetSceneId": "escape_ship_with_items"
+        },
+        {
+          "text": "2. 寻找船只的控制权，了解更多信息",
+          "targetSceneId": "take_ship_control"
+        }
+      ]
+    },
+    "explore_lighthouse": {
+      "id": "explore_lighthouse",
+      "text": "你进入灯塔，里面一片狼藉。你在灯塔顶端发现了一个老旧的望远镜。你通过望远镜向外望去，看到远处的海面上有一个巨大的平台，上面灯火通明，似乎正在进行着什么。你觉得那个平台可能与你的记忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 前往那个平台",
+          "targetSceneId": "go_to_platform"
+        },
+        {
+          "text": "2. 在灯塔里寻找更多线索",
+          "targetSceneId": "search_lighthouse"
+        }
+      ]
+    },
+    "walk_coastline": {
+      "id": "walk_coastline",
+      "text": "你沿着海岸线前进，海风吹拂着你的脸庞。你在沙滩上发现了一些奇怪的装置，看起来像是某种探测器。你觉得这些装置可能与你的失忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 检查这些装置，尝试了解其用途",
+          "targetSceneId": "check_devices"
+        },
+        {
+          "text": "2. 继续沿着海岸线前进，寻找其他线索",
+          "targetSceneId": "continue_coastline"
+        }
+      ]
+    },
+    "interpret_symbols": {
+      "id": "interpret_symbols",
+      "text": "你尝试解读石碑上的符号。经过一番努力，你发现这些符号讲述了一个古老的故事：一个关于人类记忆被剥夺，并被重新赋予的故事。故事中提到了一个名为“记忆之泉”的地方，据说那里能够恢复所有的记忆。你觉得“记忆之泉”就是你一直在寻找的。你决定：",
+      "choices": [
+        {
+          "text": "1. 前往“记忆之泉”",
+          "targetSceneId": "go_to_memory_spring"
+        },
+        {
+          "text": "2. 在废墟中寻找关于“记忆之泉”的更多线索",
+          "targetSceneId": "search_spring_clues"
+        }
+      ]
+    },
+    "explore_ruins": {
+      "id": "explore_ruins",
+      "text": "你探索了废墟，发现了一些古老的卷轴和地图。卷轴上记录着关于记忆操控的古老技术，以及一个名为“遗忘者”的神秘组织。地图上标记着一些隐秘的地点，其中一个地点被特别标注出来，上面写着“记忆之核”。你觉得“记忆之核”可能与你的记忆有关。你决定：",
+      "choices": [
+        {
+          "text": "1. 前往“记忆之核”",
+          "targetSceneId": "go_to_memory_core"
+        },
+        {
+          "text": "2. 仔细研究卷轴，了解更多古老技术",
+          "targetSceneId": "study_ancient_tech"
+        }
+      ]
+    },
+    "join_memory_guardians": {
+      "id": "join_memory_guardians",
+      "text": "你加入了“记忆守护者”组织。他们告诉你，你的失忆是“回响”组织所为，你曾经是他们的重要研究员，因为发现了他们的邪恶计划，所以他们试图抹去你的记忆。你现在是他们对抗“回响”组织的关键人物。你和“记忆守护者”们并肩作战，通过各种途径打击“回响”组织。最终，你们成功摧毁了“回响”组织，你的记忆也得到了完全恢复。你成为了记忆的守护者，为人类的自由而战。",
+      "choices": []
+    },
+    "solo_investigation": {
+      "id": "solo_investigation",
+      "text": "你决定暂时不加入“记忆守护者”，而是独自调查。你通过艾米丽提供的一些线索，开始深入了解“回响”组织。你发现他们不仅在进行记忆操控，还在试图控制全球的信息流动。你感到事态的严重性，并意识到你必须采取行动。你决定：",
+      "choices": [
+        {
+          "text": "1. 收集更多证据，然后公之于众",
+          "targetSceneId": "collect_expose"
+        },
+        {
+          "text": "2. 寻找“回响”组织的弱点，然后一击致命",
+          "targetSceneId": "find_weak_spot"
+        }
+      ]
+    }
+  },
+  "endings": []
+}
