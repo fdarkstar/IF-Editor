@@ -34,4 +34,5 @@
 #### 互动小说编辑器位置处于在"editor\index.html"
 #### 有一个附带的的阅读器位于https://github.com/fdarkstar/acbook-read
 #### 有不少页面截图可以在pic文件夹中查看
+#### 我提供了一些小说案例可供游玩和查看，可以在case文件夹中查看
 
