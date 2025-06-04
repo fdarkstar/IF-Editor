@@ -9,6 +9,7 @@
 <body>
     <header>
         <h1>互动小说编辑器</h1>
+        <button id="settings-btn">设置</button>
     </header>
     <main>
         <aside class="sidebar">
@@ -41,6 +42,7 @@
                 <button id="save-btn">保存小说</button>
                 <button id="load-btn">加载小说</button>
                 <button id="preview-btn">预览小说</button>
+                <button id="view-worldline-btn">查看世界线</button>
             </div>
             <div id="scene-editor">
                 <h2>场景编辑</h2>
@@ -61,6 +63,71 @@
             </div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script src="script.js?v=20240604"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js?v=20240604"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false, logLevel: 'debug' });
+    </script>
+
+    <!-- 设置模态框 -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>设置选项</h2>
+            <div id="settings-options-container">
+                <div class="setting-item">
+                    <label for="theme-selector">选择主题:</label>
+                    <select id="theme-selector">
+                        <option value="default">默认 (灰色)</option>
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="green">绿色 (旧版)</option>
+                    </select>
+                </div>
+                <!-- 新增：场景预览开关 (使用切换开关UI) -->
+                <div class="setting-item">
+                    <label for="scene-preview-toggle">显示场景预览:</label>
+                    <label class="toggle-switch" style="margin-top: 5px;">
+                        <input type="checkbox" id="scene-preview-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!-- 新增：精美动画效果开关 -->
+                <div class="setting-item">
+                    <label for="fancy-animation-toggle">精美动画效果:</label>
+                    <label class="toggle-switch" style="margin-top: 5px;">
+                        <input type="checkbox" id="fancy-animation-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!-- 新增：每页场景数量设置 -->
+                <div class="setting-item">
+                    <label for="scenes-per-page-input">每页场景数量:</label>
+                    <input type="number" id="scenes-per-page-input" min="1" value="10">
+                </div>
+                <!-- 其他设置选项将在这里动态加载 -->
+                <!-- 新增：阅读器使用链接 -->
+                <div class="setting-item">
+                    <label>阅读器链接:</label>
+                    <a id="reader-link" href="#" target="_blank"></a>
+                </div>
+                <!-- 新增：作者信息显示区域 -->
+                <div class="setting-item">
+                    <label>制作:</label>
+                    <a id="app-author" href="#" target="_blank"></a>
+                </div>
+                <!-- 新增：版本号显示区域 -->
+                <div class="setting-item">
+                    <label>版本号:</label>
+                    <span id="app-version">1.1.3.2</span>
+                </div>
+                <!-- 新增：反馈方式 -->
+                <div class="setting-item">
+                    <label>反馈方式:</label>
+                    <span id="feedback-email">fdarkstar@outlook.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

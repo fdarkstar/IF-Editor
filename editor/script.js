@@ -8,13 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveBtn = document.getElementById('save-btn');
     const loadBtn = document.getElementById('load-btn');
     const previewBtn = document.getElementById('preview-btn');
+    const viewWorldlineBtn = document.getElementById('view-worldline-btn'); // 新增：获取查看世界线按钮
+    const settingsBtn = document.getElementById('settings-btn'); // 新增：获取设置按钮
+    const settingsModal = document.getElementById('settings-modal'); // 新增：获取设置模态框
+    const settingsCloseBtn = settingsModal.querySelector('.close-button'); // 新增：获取设置模态框关闭按钮
+    const appVersionSpan = document.getElementById('app-version'); // 新增：获取版本号显示元素
+    const appAuthorLink = document.getElementById('app-author'); // 新增：获取作者信息链接元素
+    const readerLink = document.getElementById('reader-link'); // 新增：获取阅读器链接元素
+
     const sortBySelect = document.getElementById('sort-by');
     const searchSceneInput = document.getElementById('search-scene'); // 新增：获取搜索输入框
     const prevPageBtn = document.getElementById('prev-page-btn'); // 新增：获取上一页按钮
     const nextPageBtn = document.getElementById('next-page-btn'); // 新增：获取下一页按钮
     const pageInfoSpan = document.getElementById('page-info'); // 新增：获取页码信息显示区域
+    const sceneEditor = document.getElementById('scene-editor'); // 新增：获取场景编辑区域
     const scenePreview = document.getElementById('scene-preview');
     const previewContent = document.getElementById('preview-content');
+    const themeSelector = document.getElementById('theme-selector'); // 新增：获取主题选择器
+    const scenePreviewToggle = document.getElementById('scene-preview-toggle'); // 新增：获取场景预览开关
+    const scenesPerPageInput = document.getElementById('scenes-per-page-input'); // 新增：获取每页场景数量输入框
+    const fancyAnimationToggle = document.getElementById('fancy-animation-toggle'); // 新增：获取精美动画效果开关
 
     let storyData = {
         title: "新互动小说",
@@ -24,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let currentSceneId = null;
-    let scenesPerPage = 10; // 每页显示的场景数量
+    let scenesPerPage = 10; // 每页显示的场景数量 (默认值)
     let currentPage = 1; // 当前页码
 
     // --- 辅助函数 ---
@@ -74,6 +87,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const endIndex = startIndex + scenesPerPage;
         const scenesToDisplay = sceneIds.slice(startIndex, endIndex);
 
+        // 根据场景数量控制场景编辑和预览区域的可见性
+        if (totalScenes === 0) {
+            sceneEditor.style.display = 'none';
+            scenePreview.style.display = 'none';
+            // 如果没有场景，清空编辑器和预览内容
+            sceneIdInput.value = '';
+            sceneTextInput.value = '';
+            choicesContainer.innerHTML = '';
+            previewContent.innerHTML = '';
+            currentSceneId = null; // 没有场景时，当前选中场景应为null
+
+            // 新增：在场景列表为空时显示提示信息
+            const noSceneMessage = document.createElement('div');
+            noSceneMessage.classList.add('no-scene-message');
+            noSceneMessage.innerHTML = '<p>当前还没有场景，快添加一个场景开始写作吧！</p>';
+            sceneList.appendChild(noSceneMessage);
+        } else {
+            sceneEditor.style.display = 'block';
+            // 如果有场景，确保有场景被选中，并更新编辑器和预览
+            if (!currentSceneId || !storyData.scenes[currentSceneId]) {
+                // 如果当前没有选中场景或选中场景已不存在，则默认选中第一个场景
+                selectScene(sceneIds[0]);
+            } else {
+                // 否则，重新渲染当前选中场景的编辑器和预览
+                selectScene(currentSceneId);
+            }
+        }
+
         scenesToDisplay.forEach(id => {
             const scene = storyData.scenes[id];
             const li = document.createElement('li');
@@ -81,6 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
             li.textContent = scene.text.substring(0, 10) + '... (ID: ' + id + ')';
             if (id === currentSceneId) {
                 li.classList.add('active');
+            }
+            // 为列表项添加动画类，如果精美动画开启
+            if (fancyAnimationToggle.checked) {
+                li.classList.add('animated-list-item');
             }
 
             const deleteBtn = document.createElement('button');
@@ -102,22 +147,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function selectScene(id) {
+        const oldSceneId = currentSceneId;
         currentSceneId = id;
         const scene = storyData.scenes[id];
+
+        const applyFancyAnimation = fancyAnimationToggle.checked;
+
         if (scene) {
-            sceneIdInput.value = scene.id;
-            sceneTextInput.value = scene.text;
-            renderChoices(scene.choices);
-            // 移除所有active类
-            document.querySelectorAll('#scene-list li').forEach(item => item.classList.remove('active'));
-            // 给当前选中的场景添加active类
-            const selectedLi = document.querySelector(`[data-scene-id="${id}"]`);
-            if (selectedLi) { // 确保元素存在
-                selectedLi.classList.add('active');
+            // 如果开启了精美动画，先隐藏旧内容，再显示新内容并应用动画
+            if (applyFancyAnimation && oldSceneId !== null) {
+                // 隐藏旧内容
+                sceneEditor.classList.add('fade-out-slide-out');
+                scenePreview.classList.add('fade-out-slide-out');
+
+                setTimeout(() => {
+                    // 更新内容
+                    sceneIdInput.value = scene.id;
+                    sceneTextInput.value = scene.text;
+                    renderChoices(scene.choices);
+                    // 移除所有active类
+                    document.querySelectorAll('#scene-list li').forEach(item => item.classList.remove('active'));
+                    // 给当前选中的场景添加active类
+                    const selectedLi = document.querySelector(`[data-scene-id="${id}"]`);
+                    if (selectedLi) {
+                        selectedLi.classList.add('active');
+                    }
+                    renderScenePreview(scene);
+
+                    // 显示新内容并应用进入动画
+                    sceneEditor.classList.remove('fade-out-slide-out');
+                    scenePreview.classList.remove('fade-out-slide-out');
+                    sceneEditor.classList.add('fade-in-slide-in');
+                    scenePreview.classList.add('fade-in-slide-in');
+
+                    // 动画结束后移除动画类
+                    setTimeout(() => {
+                        sceneEditor.classList.remove('fade-in-slide-in');
+                        scenePreview.classList.remove('fade-in-slide-in');
+                    }, 500); // 动画持续时间
+                }, 300); // 隐藏动画持续时间
+            } else {
+                // 不应用动画，直接更新内容
+                sceneIdInput.value = scene.id;
+                sceneTextInput.value = scene.text;
+                renderChoices(scene.choices);
+                document.querySelectorAll('#scene-list li').forEach(item => item.classList.remove('active'));
+                const selectedLi = document.querySelector(`[data-scene-id="${id}"]`);
+                if (selectedLi) {
+                    selectedLi.classList.add('active');
+                }
+                renderScenePreview(scene);
             }
-            renderScenePreview(scene); // 新增：选择场景时更新预览
         } else {
-            previewContent.innerHTML = ''; // 如果没有选中场景，清空预览
+            previewContent.innerHTML = '';
+            scenePreview.style.display = 'none';
         }
     }
 
@@ -146,10 +229,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 新增：渲染场景预览
     function renderScenePreview(scene) {
-        if (!scene) {
-            previewContent.innerHTML = '';
+        // 如果场景预览被禁用，则不渲染内容并隐藏预览区域
+        const showPreview = localStorage.getItem('showScenePreview') !== 'false'; // 默认为true
+        if (!showPreview) {
+            scenePreview.style.display = 'none';
             return;
         }
+
+        if (!scene) {
+            previewContent.innerHTML = '';
+            scenePreview.style.display = 'none'; // 如果没有场景，也隐藏预览区域
+            return;
+        }
+
+        scenePreview.style.display = 'block'; // 确保显示，因为有场景且预览未被禁用
 
         const formattedText = scene.text.replace(/\n/g, '<br>');
         let previewHtml = `<p>${formattedText}</p>`;
@@ -217,6 +310,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderSceneList(); // 更新场景列表显示
         renderScenePreview(scene); // 新增：更新场景时更新预览
+    }
+
+    // --- 辅助函数：主题切换 ---
+    function applyTheme(themeName) {
+        document.body.className = ''; // 移除所有现有主题类
+        if (themeName && themeName !== 'default') {
+            document.body.classList.add(`theme-${themeName}`);
+        }
+        localStorage.setItem('selectedTheme', themeName); // 保存主题到localStorage
+        themeSelector.value = themeName; // 更新下拉菜单的选中值
     }
 
     // --- 事件处理函数 ---
@@ -354,13 +457,130 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open('../loader/index.html', '_blank');
     });
 
+    viewWorldlineBtn.addEventListener('click', () => {
+        updateCurrentSceneFromEditor(); // 确保最新数据已保存到storyData
+        let worldlineInfo = "--- 世界线信息 ---\n\n";
+
+        worldlineInfo += "--- 场景 ---\n";
+        if (Object.keys(storyData.scenes).length === 0) {
+            worldlineInfo += "无场景。\n";
+        } else {
+            for (const sceneId in storyData.scenes) {
+                const scene = storyData.scenes[sceneId];
+                worldlineInfo += `\nID: ${scene.id}\n`;
+                worldlineInfo += `文本: ${scene.text.substring(0, 100)}${scene.text.length > 100 ? '...' : ''}\n`;
+                if (scene.choices && scene.choices.length > 0) {
+                    worldlineInfo += "选项:\n";
+                    scene.choices.forEach((choice, index) => {
+                        worldlineInfo += `  ${index + 1}. 文本: ${choice.text}, 目标: ${choice.targetSceneId || '无'}\n`;
+                    });
+                } else {
+                    worldlineInfo += "无选项。\n";
+                }
+            }
+        }
+
+        // 将数据存储到localStorage，并打开世界线页面
+        const jsonString = JSON.stringify(storyData, null, 2);
+        localStorage.setItem('interactiveStoryData', jsonString);
+        window.open('../worldline/index.html', '_blank');
+    });
+
     // 初始化时渲染场景列表
     renderSceneList();
+
+    // 在页面加载时应用保存的主题
+    const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+    applyTheme(savedTheme);
+
+    // 初始化场景预览开关状态 (仅设置checked状态，可见性由renderSceneList和renderScenePreview控制)
+    const showScenePreview = localStorage.getItem('showScenePreview');
+    if (showScenePreview === null || showScenePreview === 'true') {
+        scenePreviewToggle.checked = true;
+    } else {
+        scenePreviewToggle.checked = false;
+    }
+
+    // 初始化精美动画效果开关状态
+    const fancyAnimationEnabled = localStorage.getItem('fancyAnimationEnabled');
+    if (fancyAnimationEnabled === null || fancyAnimationEnabled === 'true') {
+        fancyAnimationToggle.checked = true;
+        document.body.classList.add('fancy-animations-enabled');
+    } else {
+        fancyAnimationToggle.checked = false;
+        document.body.classList.remove('fancy-animations-enabled');
+    }
+
+    // 监听场景预览开关的变化
+        scenePreviewToggle.addEventListener('change', () => {
+            if (scenePreviewToggle.checked) {
+                localStorage.setItem('showScenePreview', 'true');
+                // 重新渲染当前场景的预览，以防之前是隐藏状态
+                if (currentSceneId && storyData.scenes[currentSceneId]) {
+                    renderScenePreview(storyData.scenes[currentSceneId]);
+                } else {
+                    // 如果没有当前场景，但开启了预览，也需要确保预览区域隐藏
+                    scenePreview.style.display = 'none';
+                }
+            } else {
+                localStorage.setItem('showScenePreview', 'false');
+                scenePreview.style.display = 'none';
+            }
+        });
+
+    // 监听精美动画效果开关的变化
+    fancyAnimationToggle.addEventListener('change', () => {
+        if (fancyAnimationToggle.checked) {
+            localStorage.setItem('fancyAnimationEnabled', 'true');
+            document.body.classList.add('fancy-animations-enabled');
+        } else {
+            localStorage.setItem('fancyAnimationEnabled', 'false');
+            document.body.classList.remove('fancy-animations-enabled');
+        }
+    });
+
+    // 初始化每页场景数量设置
+    const savedScenesPerPage = localStorage.getItem('scenesPerPage');
+    if (savedScenesPerPage !== null && !isNaN(parseInt(savedScenesPerPage))) {
+        scenesPerPage = parseInt(savedScenesPerPage);
+    }
+    scenesPerPageInput.value = scenesPerPage;
+
+    // 监听每页场景数量输入框的变化
+    scenesPerPageInput.addEventListener('change', () => {
+        let newScenesPerPage = parseInt(scenesPerPageInput.value);
+        if (isNaN(newScenesPerPage) || newScenesPerPage < 1) {
+            newScenesPerPage = 10; // 无效输入时恢复默认值
+            scenesPerPageInput.value = newScenesPerPage;
+        }
+        scenesPerPage = newScenesPerPage;
+        localStorage.setItem('scenesPerPage', scenesPerPage);
+        currentPage = 1; // 更改每页数量时重置页码
+        renderSceneList();
+    });
+
+
+    // 设置作者信息和链接
+    if (appAuthorLink) {
+        appAuthorLink.href = 'https://fdarkstar.github.io/fds/';
+        appAuthorLink.textContent = 'F暗星';
+    }
+
+    // 设置阅读器链接
+    if (readerLink) {
+        readerLink.href = 'https://fdarkstar.github.io/acbook-read/';
+        readerLink.textContent = '点击此处访问阅读器';
+    }
 
     // 监听排序选择框的变化
     sortBySelect.addEventListener('change', () => {
         currentPage = 1; // 排序变化时重置页码
         renderSceneList();
+    });
+
+    // 监听主题选择器的变化
+    themeSelector.addEventListener('change', (event) => {
+        applyTheme(event.target.value);
     });
 
     // 监听搜索输入框的变化
@@ -384,6 +604,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPage < totalPages) {
             currentPage++;
             renderSceneList();
+        }
+    });
+
+    // --- 设置模态框事件监听器 ---
+    settingsBtn.addEventListener('click', () => {
+        settingsModal.style.display = 'flex'; // 显示模态框
+    });
+
+    settingsCloseBtn.addEventListener('click', () => {
+        settingsModal.style.display = 'none'; // 隐藏模态框
+    });
+
+    // 点击模态框外部区域关闭模态框
+    window.addEventListener('click', (event) => {
+        if (event.target === settingsModal) {
+            settingsModal.style.display = 'none';
         }
     });
 });

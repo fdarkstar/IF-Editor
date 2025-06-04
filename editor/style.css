@@ -1,20 +1,141 @@
+/* 通用样式 */
+:root {
+    /* 默认主题 (灰色) */
+    --primary-bg-color: #e0e0e0;
+    --secondary-bg-color: #f4f4f4;
+    --header-bg-color: #333333;
+    --text-color: #333;
+    --sidebar-bg-color: #fff;
+    --sidebar-h2-color: #555555;
+    --border-color: #eee;
+    --list-hover-bg: #e9e9e9;
+    --list-active-bg: #cccccc;
+    --list-active-color: #333333;
+    --button-bg-color: #666666;
+    --button-hover-bg: #555555;
+    --delete-button-bg: #888888;
+    --delete-button-hover-bg: #777777;
+    --preview-bg-color: #e0e0e0;
+    --preview-border-color: #666666;
+    --modal-bg-color: #fefefe;
+    --modal-border-color: #888;
+    --modal-h2-color: #555555;
+    --mermaid-bg-color: #f0f0f0;
+}
+
+/* 浅色主题 */
+body.theme-light {
+    --primary-bg-color: #f8f9fa;
+    --secondary-bg-color: #ffffff;
+    --header-bg-color: #007bff;
+    --text-color: #212529;
+    --sidebar-bg-color: #ffffff;
+    --sidebar-h2-color: #007bff;
+    --border-color: #dee2e6;
+    --list-hover-bg: #e2e6ea;
+    --list-active-bg: #cce5ff;
+    --list-active-color: #0056b3;
+    --button-bg-color: #007bff;
+    --button-hover-bg: #0056b3;
+    --delete-button-bg: #dc3545;
+    --delete-button-hover-bg: #c82333;
+    --preview-bg-color: #eaf4fd;
+    --preview-border-color: #007bff;
+    --modal-bg-color: #ffffff;
+    --modal-border-color: #ced4da;
+    --modal-h2-color: #007bff;
+    --mermaid-bg-color: #f8f9fa;
+}
+
+/* 深色主题 */
+body.theme-dark {
+    --primary-bg-color: #212529;
+    --secondary-bg-color: #343a40;
+    --header-bg-color: #000000;
+    --text-color: #f8f9fa;
+    --sidebar-bg-color: #2c3034;
+    --sidebar-h2-color: #6c757d;
+    --border-color: #495057;
+    --list-hover-bg: #495057;
+    --list-active-bg: #0056b3;
+    --list-active-color: #ffffff;
+    --button-bg-color: #0056b3;
+    --button-hover-bg: #004085;
+    --delete-button-bg: #c82333;
+    --delete-button-hover-bg: #bd2130;
+    --preview-bg-color: #343a40;
+    --preview-border-color: #0056b3;
+    --modal-bg-color: #343a40;
+    --modal-border-color: #495057;
+    --modal-h2-color: #6c757d;
+    --mermaid-bg-color: #2c3034;
+}
+
+/* 绿色主题 (旧版) */
+body.theme-green {
+    --primary-bg-color: #f4f4f4;
+    --secondary-bg-color: #f9f9f9;
+    --header-bg-color: #4CAF50;
+    --text-color: #333;
+    --sidebar-bg-color: #fff;
+    --sidebar-h2-color: #4CAF50;
+    --border-color: #eee;
+    --list-hover-bg: #e9e9e9;
+    --list-active-bg: #d4edda;
+    --list-active-color: #28a745;
+    --button-bg-color: #28a745;
+    --button-hover-bg: #218838;
+    --delete-button-bg: #dc3545;
+    --delete-button-hover-bg: #c82333;
+    --preview-bg-color: #e9f7ef;
+    --preview-border-color: #28a745;
+    --modal-bg-color: #fefefe;
+    --modal-border-color: #888;
+    --modal-h2-color: #4CAF50;
+    --mermaid-bg-color: #f0f0f0;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 header {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    padding: 1rem 0;
+    background-color: var(--header-bg-color);
+    color: white;
+    padding: 1rem 20px; /* 增加左右内边距 */
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* 使用flexbox布局 */
+    justify-content: space-between; /* 标题和按钮两端对齐 */
+    align-items: center; /* 垂直居中 */
+}
+
+header h1 {
+    margin: 0; /* 移除h1的默认外边距 */
+    flex-grow: 1; /* 允许h1占据可用空间 */
+    text-align: center; /* 标题居中 */
+}
+
+#settings-btn {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#settings-btn:hover {
+    background-color: var(--button-hover-bg);
 }
 
 main {
@@ -24,112 +145,56 @@ main {
     gap: 20px;
 }
 
+/* 侧边栏样式 */
 .sidebar {
-    background-color: #ffffff;
+    width: 300px;
+    background-color: var(--sidebar-bg-color);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    width: 300px;
-    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .sidebar h2 {
-    color: #2c3e50;
+    color: var(--sidebar-h2-color);
     margin-top: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
-    margin-bottom: 15px;
 }
 
-.sort-controls {
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
+.sort-controls, .search-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.sort-controls label {
-    margin-right: 10px;
+.sort-controls label, .search-controls label {
     font-weight: bold;
 }
 
-.sort-controls select {
+.sort-controls select, .search-controls input[type="text"] {
+    flex: 1;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    font-size: 1rem;
-}
-
-.search-controls {
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.search-controls label {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-.search-controls input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    width: calc(100% - 60px); /* 调整宽度以适应标签 */
-    box-sizing: border-box;
 }
 
 #scene-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1;
-    overflow-y: auto;
-    margin-bottom: 15px;
-}
-
-.pagination-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    gap: 10px;
-}
-
-.pagination-controls button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
+    flex-grow: 1; /* 允许列表占据可用空间 */
+    overflow-y: auto; /* 列表内容过多时滚动 */
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.2s ease;
-}
-
-.pagination-controls button:hover:not(:disabled) {
-    background-color: #0056b3;
-}
-
-.pagination-controls button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-#page-info {
-    font-weight: bold;
-    color: #555;
+    background-color: var(--secondary-bg-color);
 }
 
 #scene-list li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     padding: 10px 15px;
-    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -137,240 +202,504 @@ main {
     transition: background-color 0.2s ease;
 }
 
+#scene-list li:last-child {
+    border-bottom: none;
+}
+
 #scene-list li:hover {
-    background-color: #eef;
+    background-color: var(--list-hover-bg);
 }
 
 #scene-list li.active {
-    background-color: #d4edda;
-    border-color: #28a745;
+    background-color: var(--list-active-bg); /* 选中状态的背景色 */
     font-weight: bold;
+    color: var(--list-active-color);
 }
 
 #scene-list li button {
-    background-color: #dc3545;
+    background-color: var(--delete-button-bg);
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     transition: background-color 0.2s ease;
 }
 
 #scene-list li button:hover {
-    background-color: #c82333;
+    background-color: var(--delete-button-hover-bg);
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.pagination-controls button {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: var(--button-hover-bg);
+}
+
+.pagination-controls button:disabled {
+    background-color: var(--list-active-bg); /* 使用一个浅色作为禁用按钮背景 */
+    cursor: not-allowed;
+}
+
+#page-info {
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+/* 没有场景时的提示信息样式 */
+.no-scene-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-color);
+    font-size: 1.1em;
+    margin-top: 20px;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    background-color: var(--secondary-bg-color);
+}
+
+.no-scene-message p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* 切换开关样式 */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--button-bg-color); /* 使用主题的按钮颜色 */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--button-bg-color);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* 圆角滑块 */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 
 #add-scene-btn {
-    background-color: #007bff;
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
+    font-size: 1em;
     transition: background-color 0.2s ease;
 }
 
 #add-scene-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover-bg);
 }
 
+/* 编辑器区域样式 */
 .editor-area {
-    background-color: #ffffff;
+    flex: 1;
+    background-color: var(--sidebar-bg-color); /* 使用sidebar的背景色 */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    flex: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 20px; /* 增加间距 */
+    gap: 20px;
 }
 
 #editor-controls {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
 }
 
 #editor-controls button {
-    background-color: #6c757d;
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1em;
     transition: background-color 0.2s ease;
 }
 
 #editor-controls button:hover {
-    background-color: #5a6268;
+    background-color: var(--button-hover-bg);
 }
 
-#save-btn { background-color: #28a745; }
-#save-btn:hover { background-color: #218838; }
-#load-btn { background-color: #17a2b8; }
-#load-btn:hover { background-color: #138496; }
-#preview-btn { background-color: #ffc107; color: #333; }
-#preview-btn:hover { background-color: #e0a800; }
-
 #scene-editor, #scene-preview {
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color);
     padding: 15px;
     border-radius: 8px;
-    background-color: #fdfdfd;
+    background-color: var(--secondary-bg-color);
 }
 
 #scene-editor h2, #scene-preview h2 {
-    color: #2c3e50;
+    color: var(--sidebar-h2-color);
     margin-top: 0;
     margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
 }
 
 #scene-editor label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    color: var(--text-color);
 }
 
 #scene-editor input[type="text"],
 #scene-editor textarea {
-    width: calc(100% - 22px);
+    width: calc(100% - 22px); /* 减去padding和border */
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
+    font-size: 1em;
 }
 
 #scene-editor textarea {
     resize: vertical;
-    min-height: 100px;
-}
-
-#scene-editor h3 {
-    color: #2c3e50;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    min-height: 80px;
 }
 
 #choices-container {
-    margin-bottom: 15px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
 }
 
 .choice-item {
-    background-color: #f0f4f7;
-    border: 1px solid #d0e0ea;
-    border-radius: 5px;
+    background-color: var(--sidebar-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
     padding: 10px;
     margin-bottom: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr auto; /* 调整为适应两个choice-field和一个按钮 */
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .choice-field {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* 标签和输入框之间的间距 */
+    flex: 1;
+    min-width: 150px;
 }
 
-.choice-item label {
-    margin-bottom: 0;
-    font-weight: normal;
-    white-space: nowrap; /* 防止标签换行 */
+.choice-field label {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 3px;
 }
 
 .choice-item input[type="text"] {
-    flex-grow: 1; /* 让输入框填充剩余空间 */
+    width: calc(100% - 20px);
     padding: 8px;
-    border: 1px solid #bbb;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    font-size: 0.9rem;
-    box-sizing: border-box;
-    margin-bottom: 0; /* 移除默认的margin-bottom */
+    font-size: 0.9em;
+    margin-bottom: 0; /* 覆盖默认的margin-bottom */
 }
 
 .choice-item .delete-choice-btn {
-    background-color: #dc3545;
+    background-color: var(--delete-button-bg);
     color: white;
     border: none;
     padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.9em;
     transition: background-color 0.2s ease;
 }
 
 .choice-item .delete-choice-btn:hover {
-    background-color: #c82333;
+    background-color: var(--delete-button-hover-bg);
 }
 
 #add-choice-btn {
-    background-color: #17a2b8;
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 8px 15px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.9em;
+    margin-top: 10px;
     transition: background-color 0.2s ease;
 }
 
 #add-choice-btn:hover {
-    background-color: #138496;
+    background-color: var(--button-hover-bg);
 }
 
-/* 场景预览样式 */
 #scene-preview {
-    flex: 1; /* 让预览区域占据剩余空间 */
-    overflow-y: auto; /* 允许内容滚动 */
-    background-color: #e9ecef; /* 浅灰色背景 */
-    border: 1px solid #ced4da;
-    padding: 20px;
-    border-radius: 8px;
+    flex-grow: 1;
+    background-color: var(--preview-bg-color);
+    border: 1px solid var(--preview-border-color);
 }
 
-#scene-preview h2 {
-    color: #2c3e50;
-    margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #b0b0b0;
-    padding-bottom: 10px;
-}
-
-#preview-content p {
-    font-size: 1.1rem;
+#preview-content {
+    white-space: pre-wrap; /* 保留文本中的换行符和空格 */
+    word-wrap: break-word; /* 自动换行 */
     line-height: 1.6;
-    margin-bottom: 15px;
-    color: #343a40;
+    color: var(--text-color);
 }
 
 #preview-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 10px;
 }
 
-#preview-content ul li {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
+#preview-content li {
+    margin-bottom: 5px;
+}
+
+/* 模态框样式 */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定定位 */
+    z-index: 1000; /* 确保在最上层 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全宽 */
+    height: 100%; /* 全高 */
+    overflow: auto; /* 如果内容溢出，则添加滚动条 */
+    background-color: rgba(0,0,0,0.6); /* 半透明黑色背景 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+}
+
+.modal-content {
+    background-color: var(--modal-bg-color);
+    margin: auto; /* 自动边距，配合justify-content和align-items实现居中 */
+    padding: 20px;
+    border: 1px solid var(--modal-border-color);
+    width: 90%; /* 增加宽度 */
+    max-width: 800px; /* 调整最大宽度以适应设置选项 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    max-height: 90vh; /* 最大高度 */
+    overflow-y: auto; /* 内容溢出时滚动 */
+}
+
+/* 精美动画效果相关样式 */
+body.fancy-animations-enabled #scene-editor,
+body.fancy-animations-enabled #scene-preview {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+body.fancy-animations-enabled #scene-editor.fade-out-slide-out,
+body.fancy-animations-enabled #scene-preview.fade-out-slide-out {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+body.fancy-animations-enabled #scene-editor.fade-in-slide-in,
+body.fancy-animations-enabled #scene-preview.fade-in-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+body.fancy-animations-enabled #scene-list li {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+body.fancy-animations-enabled #scene-list li:hover {
+    transform: translateX(5px);
+}
+
+body.fancy-animations-enabled button,
+body.fancy-animations-enabled input[type="text"],
+body.fancy-animations-enabled textarea,
+body.fancy-animations-enabled select {
+    transition: all 0.2s ease-in-out;
+}
+
+body.fancy-animations-enabled .modal {
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+body.fancy-animations-enabled .modal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+.modal-content h2 {
+    color: var(--modal-h2-color);
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Mermaid 图表容器样式 */
+.mermaid {
+    text-align: center; /* 居中Mermaid图表 */
+    overflow-x: auto; /* 如果图表过宽，允许水平滚动 */
+    padding: 10px;
+    background-color: var(--mermaid-bg-color);
     border-radius: 5px;
-    padding: 10px 15px;
+    min-height: 300px; /* 确保有最小高度 */
+    min-width: 600px; /* 确保有最小宽度，允许水平滚动 */
+    display: flex; /* 使用flexbox来居中内容 */
+    justify-content: center;
+    align-items: center;
+}
+
+.mermaid svg {
+    max-width: none !important; /* 允许SVG内容超出容器宽度，由overflow-x处理 */
+    height: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: auto;
+    }
+
+    .editor-area {
+        width: auto;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}
+
+/* 设置项样式 */
+.setting-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.setting-item label {
+    display: block;
     margin-bottom: 8px;
-    font-size: 1rem;
-    color: #495057;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.setting-item select,
+.setting-item input[type="text"],
+.setting-item input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
 }

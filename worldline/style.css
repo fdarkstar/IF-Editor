@@ -1,0 +1,122 @@
+:root {
+    /* 默认主题 (灰色) */
+    --primary-bg-color: #e0e0e0;
+    --header-bg-color: #333333;
+    --text-color: #333;
+    --button-bg-color: #666666;
+    --button-hover-bg: #555555;
+    --graph-container-bg: #fff;
+    --mermaid-bg-color: #f0f0f0;
+}
+
+/* 浅色主题 */
+body.theme-light {
+    --primary-bg-color: #f8f9fa;
+    --header-bg-color: #007bff;
+    --text-color: #212529;
+    --button-bg-color: #007bff;
+    --button-hover-bg: #0056b3;
+    --graph-container-bg: #ffffff;
+    --mermaid-bg-color: #f8f9fa;
+}
+
+/* 深色主题 */
+body.theme-dark {
+    --primary-bg-color: #212529;
+    --header-bg-color: #000000;
+    --text-color: #f8f9fa;
+    --button-bg-color: #0056b3;
+    --button-hover-bg: #004085;
+    --graph-container-bg: #343a40;
+    --mermaid-bg-color: #2c3034;
+}
+
+/* 绿色主题 (旧版) */
+body.theme-green {
+    --primary-bg-color: #f4f4f4;
+    --header-bg-color: #4CAF50;
+    --text-color: #333;
+    --button-bg-color: #28a745;
+    --button-hover-bg: #218838;
+    --graph-container-bg: #fff;
+    --mermaid-bg-color: #f0f0f0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--header-bg-color);
+    color: white;
+    padding: 1rem 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    flex-grow: 1;
+}
+
+#back-to-editor-btn {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#back-to-editor-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+
+main {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* 确保内容不会溢出 */
+}
+
+#worldline-graph-container {
+    background-color: var(--graph-container-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%; /* 与编辑器模态框保持一致 */
+    /* max-height: 80vh; */ /* 限制高度 */
+    overflow: hidden; /* 确保svg-pan-zoom可以控制溢出 */
+    position: relative; /* 用于定位Mermaid图表 */
+}
+
+.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Mermaid本身会处理SVG的缩放和居中，这里主要提供容器 */
+}
+
+/* 确保SVG元素能够被svg-pan-zoom控制 */
+.mermaid svg {
+    width: 100%;
+    height: 100%;
+    display: block; /* 移除SVG默认的inline-block间隙 */
+}
