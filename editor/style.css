@@ -425,6 +425,24 @@ input:checked + .slider:before {
     min-height: 80px;
 }
 
+/* 实时预览区域样式 */
+.live-preview-area {
+    width: calc(100% - 22px); /* 与textarea宽度一致 */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+    min-height: 80px; /* 与textarea最小高度一致 */
+    background-color: var(--secondary-bg-color); /* 与textarea背景色一致 */
+    color: var(--text-color);
+    overflow-y: auto; /* 允许内容滚动 */
+    line-height: 1.6;
+    white-space: pre-wrap; /* 保留换行和空格 */
+    word-wrap: break-word; /* 自动换行 */
+    box-sizing: border-box; /* 确保padding和border包含在宽度内 */
+}
+
 #choices-container {
     margin-top: 15px;
     border-top: 1px solid var(--border-color);
@@ -702,4 +720,36 @@ body.fancy-animations-enabled .modal.show {
     font-size: 1em;
     background-color: var(--secondary-bg-color);
     color: var(--text-color);
+}
+
+/* 文本格式化控件样式 */
+.text-format-controls {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.text-format-controls button {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.text-format-controls button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* 预览内容中的格式化文本样式 */
+#preview-content strong {
+    font-weight: bold;
+}
+
+#preview-content em {
+    font-style: italic;
 }

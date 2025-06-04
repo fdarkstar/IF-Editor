@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const addSceneBtn = document.getElementById('add-scene-btn');
     const sceneIdInput = document.getElementById('scene-id');
     const sceneTextInput = document.getElementById('scene-text');
+    const livePreviewContent = document.getElementById('live-preview-content'); // 新增：获取实时预览区域
+    const boldBtn = document.getElementById('bold-btn'); // 新增：获取加粗按钮
+    const italicBtn = document.getElementById('italic-btn'); // 新增：获取斜体按钮
     const choicesContainer = document.getElementById('choices-container');
     const addChoiceBtn = document.getElementById('add-choice-btn');
     const saveBtn = document.getElementById('save-btn');
@@ -14,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsCloseBtn = settingsModal.querySelector('.close-button'); // 新增：获取设置模态框关闭按钮
     const appVersionSpan = document.getElementById('app-version'); // 新增：获取版本号显示元素
     const appAuthorLink = document.getElementById('app-author'); // 新增：获取作者信息链接元素
-    const readerLink = document.getElementById('reader-link'); // 新增：获取阅读器链接元素
+    const readerUrlDisplay = document.getElementById('reader-url-display'); // 新增：获取阅读器地址显示元素
+    const openReaderBtn = document.getElementById('open-reader-btn'); // 新增：获取前往阅读器按钮
 
     const sortBySelect = document.getElementById('sort-by');
     const searchSceneInput = document.getElementById('search-scene'); // 新增：获取搜索输入框
@@ -43,6 +47,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 辅助函数 ---
     function generateUniqueId(prefix) {
         return prefix + Date.now() + Math.floor(Math.random() * 1000);
+    }
+
+    // 简单的Markdown解析函数 (从renderScenePreview中提取)
+    function parseMarkdown(text) {
+        // 先处理加粗和斜体，避免嵌套问题
+        // 加粗: **text** -> <strong>text</strong>
+        let parsedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // 斜体: *text* -> <em>text</em>
+        parsedText = parsedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        // 换行符替换为<br>
+        parsedText = parsedText.replace(/\n/g, '<br>');
+        return parsedText;
+    }
+
+    // 简单的Markdown解析函数 (从renderScenePreview中提取)
+    function parseMarkdown(text) {
+        // 先处理加粗和斜体，避免嵌套问题
+        // 加粗: **text** -> <strong>text</strong>
+        let parsedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // 斜体: *text* -> <em>text</em>
+        parsedText = parsedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        // 换行符替换为<br>
+        parsedText = parsedText.replace(/\n/g, '<br>');
+        return parsedText;
+    }
+
+    // 辅助函数：在textarea中插入文本或包裹选定文本
+    function insertTextAtCursor(textarea, startTag, endTag = '') {
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const selectedText = textarea.value.substring(start, end);
+        const textBefore = textarea.value.substring(0, start);
+        const textAfter = textarea.value.substring(end, textarea.value.length);
+
+        if (selectedText) {
+            // 如果有选定文本，则包裹
+            textarea.value = textBefore + startTag + selectedText + endTag + textAfter;
+            // 重新选择被包裹的文本
+            textarea.selectionStart = start + startTag.length;
+            textarea.selectionEnd = start + startTag.length + selectedText.length;
+        } else {
+            // 如果没有选定文本，则在光标处插入标签，并将光标置于标签中间
+            textarea.value = textBefore + startTag + endTag + textAfter;
+            textarea.selectionStart = start + startTag.length;
+            textarea.selectionEnd = start + startTag.length;
+        }
+        textarea.focus();
+        // 触发input事件，以便实时更新预览
+        textarea.dispatchEvent(new Event('input'));
     }
 
     function renderSceneList() {
@@ -154,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const applyFancyAnimation = fancyAnimationToggle.checked;
 
         if (scene) {
-            // 如果开启了精美动画，先隐藏旧内容，再显示新内容并应用动画
-            if (applyFancyAnimation && oldSceneId !== null) {
+            // 只有在场景ID发生变化时才应用动画
+            if (applyFancyAnimation && oldSceneId !== id) {
                 // 隐藏旧内容
                 sceneEditor.classList.add('fade-out-slide-out');
                 scenePreview.classList.add('fade-out-slide-out');
@@ -164,7 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 更新内容
                     sceneIdInput.value = scene.id;
                     sceneTextInput.value = scene.text;
-                    renderChoices(scene.choices);
+                    renderChoices(scene.choices); // 移动到这里，在触发input事件之前
+                    sceneTextInput.dispatchEvent(new Event('input')); // 触发input事件以更新实时预览
                     // 移除所有active类
                     document.querySelectorAll('#scene-list li').forEach(item => item.classList.remove('active'));
                     // 给当前选中的场景添加active类
@@ -172,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (selectedLi) {
                         selectedLi.classList.add('active');
                     }
-                    renderScenePreview(scene);
+                    renderScenePreview(scene); // 立即更新预览内容，不带动画
 
                     // 显示新内容并应用进入动画
                     sceneEditor.classList.remove('fade-out-slide-out');
@@ -190,13 +244,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 不应用动画，直接更新内容
                 sceneIdInput.value = scene.id;
                 sceneTextInput.value = scene.text;
-                renderChoices(scene.choices);
+                renderChoices(scene.choices); // 移动到这里
+                sceneTextInput.dispatchEvent(new Event('input')); // 触发input事件以更新实时预览
                 document.querySelectorAll('#scene-list li').forEach(item => item.classList.remove('active'));
                 const selectedLi = document.querySelector(`[data-scene-id="${id}"]`);
                 if (selectedLi) {
                     selectedLi.classList.add('active');
                 }
-                renderScenePreview(scene);
+                renderScenePreview(scene); // 立即更新预览内容
             }
         } else {
             previewContent.innerHTML = '';
@@ -244,12 +299,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         scenePreview.style.display = 'block'; // 确保显示，因为有场景且预览未被禁用
 
-        const formattedText = scene.text.replace(/\n/g, '<br>');
+        const formattedText = parseMarkdown(scene.text);
         let previewHtml = `<p>${formattedText}</p>`;
         if (scene.choices && scene.choices.length > 0) {
             previewHtml += '<ul>';
             scene.choices.forEach(choice => {
-                previewHtml += `<li>${choice.text} (目标: ${choice.targetSceneId || '无'})</li>`;
+                // 选项文本也进行Markdown解析
+                previewHtml += `<li>${parseMarkdown(choice.text)} (目标: ${choice.targetSceneId || '无'})</li>`;
             });
             previewHtml += '</ul>';
         }
@@ -308,8 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scene.choices.push({ text, targetSceneId });
         });
 
-        renderSceneList(); // 更新场景列表显示
-        renderScenePreview(scene); // 新增：更新场景时更新预览
+        renderScenePreview(scene); // 更新场景时更新预览
     }
 
     // --- 辅助函数：主题切换 ---
@@ -383,8 +438,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 监听场景ID的变化，实时更新数据
+    sceneIdInput.addEventListener('input', () => {
+        updateCurrentSceneFromEditor();
+    });
+
     // 监听场景内容和选项的变化，实时更新数据
-    sceneTextInput.addEventListener('input', updateCurrentSceneFromEditor);
+    sceneTextInput.addEventListener('input', () => {
+        updateCurrentSceneFromEditor();
+        // 实时更新live-preview-content
+        livePreviewContent.innerHTML = parseMarkdown(sceneTextInput.value);
+    });
+
+    // 新增：加粗按钮事件监听器
+    boldBtn.addEventListener('click', () => {
+        insertTextAtCursor(sceneTextInput, '**', '**');
+    });
+
+    // 新增：斜体按钮事件监听器
+    italicBtn.addEventListener('click', () => {
+        insertTextAtCursor(sceneTextInput, '*', '*');
+    });
+
+    // 新增：快捷键支持 (Ctrl+B for bold, Ctrl+I for italic)
+    sceneTextInput.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) { // Ctrl for Windows/Linux, Cmd for Mac
+            if (e.key === 'b' || e.key === 'B') {
+                e.preventDefault(); // 阻止浏览器默认行为
+                insertTextAtCursor(sceneTextInput, '**', '**');
+            } else if (e.key === 'i' || e.key === 'I') {
+                e.preventDefault(); // 阻止浏览器默认行为
+                insertTextAtCursor(sceneTextInput, '*', '*');
+            }
+        }
+    });
+
     choicesContainer.addEventListener('input', (e) => {
         if (e.target.classList.contains('choice-text') || e.target.classList.contains('choice-target-scene-id')) {
             updateCurrentSceneFromEditor();
@@ -503,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初始化精美动画效果开关状态
     const fancyAnimationEnabled = localStorage.getItem('fancyAnimationEnabled');
-    if (fancyAnimationEnabled === null || fancyAnimationEnabled === 'true') {
+    if (fancyAnimationEnabled === 'true') {
         fancyAnimationToggle.checked = true;
         document.body.classList.add('fancy-animations-enabled');
     } else {
@@ -566,10 +654,16 @@ document.addEventListener('DOMContentLoaded', () => {
         appAuthorLink.textContent = 'F暗星';
     }
 
-    // 设置阅读器链接
-    if (readerLink) {
-        readerLink.href = 'https://fdarkstar.github.io/acbook-read/';
-        readerLink.textContent = '点击此处访问阅读器';
+    // 监听前往阅读器按钮点击
+    if (openReaderBtn && readerUrlDisplay) {
+        openReaderBtn.addEventListener('click', () => {
+            const readerUrl = readerUrlDisplay.textContent;
+            if (readerUrl) {
+                window.open(readerUrl, '_blank');
+            } else {
+                alert('阅读器地址为空，无法打开。');
+            }
+        });
     }
 
     // 监听排序选择框的变化

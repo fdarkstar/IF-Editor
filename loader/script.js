@@ -10,6 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameState = {};
 
     // --- 辅助函数 ---
+    // 简单的Markdown解析函数
+    function parseMarkdown(text) {
+        // 先处理加粗和斜体，避免嵌套问题
+        // 加粗: **text** -> <strong>text</strong>
+        let parsedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // 斜体: *text* -> <em>$1</em>
+        parsedText = parsedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        parsedText = parsedText.replace(/\n/g, '<br>');
+        return parsedText;
+    }
+
     function loadStory() {
         const jsonString = localStorage.getItem('interactiveStoryData');
         if (jsonString) {
@@ -73,13 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const scene = storyData.scenes[sceneId];
         if (!scene) {
-            sceneTextElement.textContent = '错误：场景 ' + sceneId + ' 不存在。';
-            return;
-        }
+        sceneTextElement.innerHTML = '错误：场景 ' + sceneId + ' 不存在。';
+        return;
+    }
 
-        sceneTextElement.textContent = scene.text;
+    sceneTextElement.innerHTML = parseMarkdown(scene.text);
 
-        // 检查是否达到结局
+    // 检查是否达到结局
         const reachedEnding = checkEndings();
         if (reachedEnding) {
             endingTextElement.textContent = reachedEnding.text;
@@ -92,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 检查选项条件
             if (checkConditions(choice.conditions)) {
                 const button = document.createElement('button');
-                button.textContent = choice.text;
+                button.innerHTML = parseMarkdown(choice.text);
                 button.addEventListener('click', () => chooseOption(choice));
                 choicesContainer.appendChild(button);
             }
